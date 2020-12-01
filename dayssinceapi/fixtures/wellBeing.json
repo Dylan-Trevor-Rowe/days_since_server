@@ -1,0 +1,17 @@
+[
+    {
+        "model": "dayssinceapi.WellBeing",
+        "pk": 1,
+        "fields": {
+            "date": "2021-10-04",
+            "fatigueScale": 1,
+            "painScale": 1,
+            "symptoms": "headache",
+            "hoursOfSleep": 6,
+            "emotionalWellBeing": 3
+            
+           
+        }
+    }
+    
+]
