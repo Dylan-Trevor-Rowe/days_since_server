@@ -6,5 +6,6 @@
             "name": "daysSince",
             "database": "db.sqlite3"
         }
-    ]
+    ],
+    "python.pythonPath": "/home/useradd/.local/share/virtualenvs/days_since_server-fS4yGMlh/bin/python"
 }

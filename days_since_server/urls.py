@@ -1,12 +1,13 @@
 from django.conf.urls import include
 from django.urls import path
 from dayssinceapi.views.auth import register_user, login_user
-from dayssinceapi.views import WellBeing
+from dayssinceapi.views import WellBeingView
 from rest_framework import routers
 
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'wellbeing', WellBeing, 'emotionalWellBeing')
+router.register(r'wellbeing', WellBeingView, 'emotionalWellBeing')
+
 
 
 urlpatterns = [
