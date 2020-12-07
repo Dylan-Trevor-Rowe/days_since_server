@@ -10,3 +10,10 @@
     }
     
 } ]
+
+
+// create a new model file in models
+// create new class it will inherit from model.models 
+// make migrations and migrate
+// create fixture and load it 
+// url , then viewClass in views 

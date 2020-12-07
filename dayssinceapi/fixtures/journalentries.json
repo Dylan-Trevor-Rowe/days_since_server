@@ -1,0 +1,12 @@
+[ 
+    { 
+        
+        "model": "dayssinceapi.JournalEntry",
+        "pk": 1,
+        "fields": {
+           "date": "2021-10-04",
+           "entry": "this is a journal entry. It can have a lot of text maybe possibly",
+           "user": 1
+           }
+        
+    } ]

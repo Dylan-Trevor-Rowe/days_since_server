@@ -15,7 +15,6 @@ class WellBeingView(ViewSet):
     def list(self, request):
    
         wellbeing = WellBeing.objects.all()
-   
         serializer = WellBeingSerializer(
         wellbeing, many=True)
         return Response(serializer.data)
@@ -60,6 +59,32 @@ class WellBeingView(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+    def retrieve(self, request, pk=None):
+     
+        try:
+            well_being = WellBeing.objects.get(pk=pk)
+            serializer = WellBeingSerializer(well_being, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
+    def update(self, request, pk=None):
+   
+        user = DaysSinceUser.objects.get(user=request.auth.user)
+
+        well_being = WellBeing.objects.get(pk=pk)
+        well_being.date = request.data["date"]
+        well_being.fatigueScale = request.data["fatigueScale"]
+        well_being.painScale = request.data["painScale"]
+        well_being.symptoms = request.data["symptoms"]
+        well_being.hoursOfSleep = request.data["hoursOfSleep"]
+        well_being.emotionalWellBeing = request.data["emotionalWellBeing"]
+        well_being.user = user
+        well_being.save()
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+      
 class WellBeingSerializer(serializers.ModelSerializer):
     """JSON serializer for WellBeing"""
 
@@ -67,5 +92,6 @@ class WellBeingSerializer(serializers.ModelSerializer):
         model = WellBeing
         fields = ('id','date', 'fatigueScale', 'painScale','symptoms', 'hoursOfSleep', 'emotionalWellBeing')
         depth = 1
+
 
         
