@@ -1,9 +1,7 @@
 from dayssinceapi.models.JournalEntry import JournalEntry
 from dayssinceapi.models.DaysSinceUser import DaysSinceUser
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
-from django.db.models import Count, Q
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
