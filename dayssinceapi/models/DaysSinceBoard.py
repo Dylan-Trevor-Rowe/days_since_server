@@ -3,5 +3,5 @@ from django.db import models
 
 
 class DaysSinceBoard(models.Model):
-    days_since_board = models.IntegerField()
+    daysSinceBoard = models.IntegerField()
     user = models.ForeignKey(DaysSinceUser, on_delete=models.CASCADE)

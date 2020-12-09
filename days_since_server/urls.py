@@ -1,7 +1,9 @@
+from dayssinceapi.views.dayssinceboard import DaysSinceBoardView
 from django.conf.urls import include
 from django.urls import path
 from dayssinceapi.views.auth import register_user, login_user
 from dayssinceapi.views import WellBeingView, JournalEntryView, GoalsViewset, ArticlesViewset
+DaysSinceBoardView
 from rest_framework import routers
 
 
@@ -10,6 +12,7 @@ router.register(r'wellbeing', WellBeingView, 'emotionalWellBeing')
 router.register(r'journal', JournalEntryView, 'journalentry')
 router.register(r'goals', GoalsViewset, 'goals')
 router.register(r'articles', ArticlesViewset, 'articles')
+router.register(r'home', DaysSinceBoardView, 'dayssinceboard')
 
 
 
