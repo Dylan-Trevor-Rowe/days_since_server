@@ -6,7 +6,7 @@
         "fields": {
         "comment": "this is a comment",
         "user": 1,
-        "articleid": 1
+        "article": 1
            }
         
     } ]
