@@ -1,0 +1,12 @@
+[ 
+    { 
+        
+        "model": "dayssinceapi.Comments",
+        "pk": 1,
+        "fields": {
+        "comment": "this is a comment",
+        "user": 1,
+        "article": 1
+           }
+        
+    } ]

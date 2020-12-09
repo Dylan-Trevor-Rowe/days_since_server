@@ -1,0 +1,12 @@
+[
+    {
+        "model": "dayssinceapi.Goals",
+        "pk": 1,
+        "fields": {
+            "date": "2021-10-04",
+            "goal_name": "stretch",
+            "user": 1
+        }
+    }
+  
+    ]

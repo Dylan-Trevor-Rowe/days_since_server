@@ -29,9 +29,18 @@ class WellBeingView(ViewSet):
             well_being.date = request.data["date"]
             well_being.fatigueScale = request.data["fatigueScale"]
             well_being.painScale = request.data["painScale"]
-            well_being.symptoms = request.data["symptoms"]
+            well_being.noSymptoms = request.data["noSymptoms"]
+            well_being.numbness = request.data["numbness"]
+            well_being.tingling = request.data["tingling"]
+            well_being.weakness = request.data["weakness"]
+            well_being.stiffness = request.data["stiffness"]
+            well_being.coordinationOrBalanceProblems = request.data["coordinationOrBalanceProblems"]
+            well_being.heatSensitivity = request.data["heatSensitivity"]
+            well_being.incontenance = request.data["incontenance"]
+            well_being.brainFog = request.data["brainFog"]
             well_being.hoursOfSleep = request.data["hoursOfSleep"]
             well_being.emotionalWellBeing = request.data["emotionalWellBeing"]
+        
         except KeyError as ex:
             return Response({'message': 'Incorrect key was sent in request'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -76,7 +85,15 @@ class WellBeingView(ViewSet):
         well_being.date = request.data["date"]
         well_being.fatigueScale = request.data["fatigueScale"]
         well_being.painScale = request.data["painScale"]
-        well_being.symptoms = request.data["symptoms"]
+        well_being.noSymptoms = request.data["noSymptoms"]
+        well_being.numbness = request.data["numbness"]
+        well_being.tingling = request.data["tingling"]
+        well_being.weakness = request.data["weakness"]
+        well_being.stiffness = request.data["stiffness"]
+        well_being.coordinationOrBalanceProblems = request.data["coordinationOrBalanceProblems"]
+        well_being.heatSensitivity = request.data["heatSensitivity"]
+        well_being.incontenance = request.data["incontenance"]
+        well_being.brainFog = request.data["brainFog"]
         well_being.hoursOfSleep = request.data["hoursOfSleep"]
         well_being.emotionalWellBeing = request.data["emotionalWellBeing"]
         well_being.user = user
@@ -90,7 +107,9 @@ class WellBeingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WellBeing
-        fields = ('id','date', 'fatigueScale', 'painScale','symptoms', 'hoursOfSleep', 'emotionalWellBeing')
+        fields = ('id','date', 'fatigueScale', 'painScale','noSymptoms', 'numbness', 
+        'tingling','weakness', 'stiffness', 'coordinationOrBalanceProblems', 'heatSensitivity', 
+        'incontenance', 'brainFog',  'hoursOfSleep', 'emotionalWellBeing' ,)
         depth = 1
 
 

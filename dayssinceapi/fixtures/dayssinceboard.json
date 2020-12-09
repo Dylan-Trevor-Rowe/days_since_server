@@ -1,0 +1,11 @@
+[ 
+    { 
+        
+        "model": "dayssinceapi.DaysSinceBoard",
+        "pk": 1,
+        "fields": {
+           "daysSinceBoard":20,
+           "user": 1
+           }
+        
+    } ]

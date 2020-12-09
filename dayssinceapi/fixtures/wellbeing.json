@@ -6,8 +6,16 @@
             "date": "2021-10-04",
             "fatigueScale": 1,
             "painScale": 1,
-            "symptoms": "headache",
-            "hoursOfSleep": 6,
+            "noSymptoms": false,
+            "numbness": true,
+            "tingling": false,
+            "weakness": false,
+            "stiffness": false,
+            "coordinationOrBalanceProblems": false,
+            "heatSensitivity": false,
+            "incontenance": false,
+            "brainFog": false,
+            "hoursOfSleep": 7,
             "emotionalWellBeing": 3
             }
     }

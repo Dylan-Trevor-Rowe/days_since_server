@@ -1,14 +1,20 @@
 from dayssinceapi.models.DaysSinceUser import DaysSinceUser
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.db import models
+
 
 class WellBeing(models.Model):
     date = models.DateField()
     fatigueScale = models.IntegerField()
     painScale = models.IntegerField()
-    symptoms = models.CharField(max_length=30, default='none')
+    noSymptoms = models.BooleanField(default='false')
+    numbness = models.BooleanField(default='false')
+    tingling = models.BooleanField(default='false')
+    weakness = models.BooleanField(default='false')
+    stiffness = models.BooleanField(default='false')
+    coordinationOrBalanceProblems = models.BooleanField(default='false')
+    heatSensitivity = models.BooleanField(default='false')
+    incontenance = models.BooleanField(default='false')
+    brainFog = models.BooleanField(default='false')
     hoursOfSleep = models.IntegerField()
     emotionalWellBeing = models.IntegerField()
+   
