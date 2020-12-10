@@ -57,14 +57,13 @@ def register_user(request):
         last_name=req_body['last_name']
     )
 
-    user = DaysSinceUser.objects.create(
-        firstName = req_body['firstName'],
-        lastName = req_body['lastName'],
-        user = new_user
+    days_since_user = DaysSinceUser.objects.create(
+
+        user=new_user
     )
 
     # Commit the user to the database by saving it
-    user.save()
+    days_since_user.save()
 
     # Use the REST Framework's token generator on the new user account
     token = Token.objects.create(user=new_user)

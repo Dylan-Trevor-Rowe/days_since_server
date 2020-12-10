@@ -8,7 +8,7 @@ class DaysSinceUser(models.Model):
 
 @property
 def fullname(self):
-        return f"{self.user.firstName} {self.user.lastName}"
+        return f"{self.user.first_name} {self.user.last_name}"
 
 @property
 def username(self):
