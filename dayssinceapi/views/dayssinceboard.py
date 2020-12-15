@@ -10,6 +10,7 @@ class DaysSinceBoardView(ViewSet):
     def list(self, request):
    
         board = DaysSinceBoard.objects.all()
+        user = DaysSinceUser.objects.get(user=request.auth.user)
    
         serializer = DaysSinceBoardSerializer(
         board, many=True)
@@ -23,11 +24,12 @@ class DaysSinceBoardView(ViewSet):
 
         try:
             board.daysSinceBoard = request.data["daysSinceBoard"]
+            board.daysSinceBoard = request.data['created']
             board.user = user
       
         except KeyError as ex:
             return Response({'message': 'Incorrect key was sent in request'}, status=status.HTTP_400_BAD_REQUEST)
-
+        
         try:
             board.save()
             serializer = DaysSinceBoardSerializer(board, context={'request': request})
@@ -40,5 +42,5 @@ class DaysSinceBoardSerializer(serializers.ModelSerializer):
   
         class Meta:
             model = DaysSinceBoard
-            fields = ('id', 'daysSinceBoard', 'user' )
+            fields = ('id', 'daysSinceBoard', 'created', 'user', )
             depth = 1

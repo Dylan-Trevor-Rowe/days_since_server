@@ -5,6 +5,7 @@
         "pk": 1,
         "fields": {
            "daysSinceBoard":20,
+           "created": "2021-10-04",
            "user": 1
            }
         
