@@ -107,9 +107,8 @@ class WellBeingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WellBeing
-        fields = ('id','date', 'fatigueScale', 'painScale','noSymptoms', 'numbness', 
-        'tingling','weakness', 'stiffness', 'coordinationOrBalanceProblems', 'heatSensitivity', 
-        'incontenance', 'brainFog',  'hoursOfSleep', 'emotionalWellBeing' ,)
+        fields = ('id','date','weakness', 'stiffness', 'coordinationOrBalanceProblems', 'heatSensitivity', 'incontenance', 'brainFog', 'fatigueScale', 'painScale','noSymptoms', 'numbness', 
+        'tingling',  'hoursOfSleep', 'emotionalWellBeing' ,)
         depth = 1
 
 

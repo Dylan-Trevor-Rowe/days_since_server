@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 
 class DaysSinceUser(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
+  
 
 @property
 def fullname(self):
-        return f"{self.user.firstName} {self.user.lastName}"
+        return f"{self.user.first_name} {self.user.last_name}"
 
 @property
 def username(self):
