@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "date": "2021-10-04",
-            "goal_name": "stretch",
+            "goal_name": true,
             "user": 1
         }
     }
