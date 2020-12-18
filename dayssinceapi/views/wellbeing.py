@@ -24,6 +24,7 @@ class WellBeingView(ViewSet):
         user = DaysSinceUser.objects.get(user=request.auth.user)
 
         well_being = WellBeing()
+        well_being.user = user
 
         try:
             well_being.date = request.data["date"]

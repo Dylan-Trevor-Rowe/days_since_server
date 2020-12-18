@@ -9,9 +9,13 @@ from rest_framework.viewsets import ViewSet
 class GoalsViewset(ViewSet):
 
     def list(self, request):
-   
+        user = DaysSinceUser.objects.get(user=request.auth.user)
         goal = Goals.objects.all()
-   
+        goal.user = user
+        # user_id = self.request.query_params.get('user_id', None)
+        # if user_id is not None:
+        #     goal = goal.filter(user_id=user_id)
+
         serializer = GoalSerializer(
         goal, many=True)
         return Response(serializer.data)
@@ -25,10 +29,13 @@ class GoalsViewset(ViewSet):
         try:
             goals.date = request.data["date"]
             goals.goal_name = request.data["goal_name"]
+            goals.goal_length = request.data["goal_length"]
+            goals.goal_reason = request.data["goal_reason"]
+            goals.user = user
         except KeyError as ex:
             return Response({'message': 'Incorrect key was sent in request'}, status=status.HTTP_400_BAD_REQUEST)
 
-        goals.user = user
+     
 
         try:
             goals.save()
@@ -40,6 +47,7 @@ class GoalsViewset(ViewSet):
     def destroy(self, request, pk=None):
 
         try:
+      
             goals = Goals.objects.get(pk=pk)
             goals.delete()
 
@@ -57,6 +65,8 @@ class GoalsViewset(ViewSet):
         goals = Goals.objects.get(pk=pk)
         goals.date = request.data["date"]
         goals.goal_name = request.data["goal_name"]
+        goals.goal_length = request.data["goal_length"]
+        goals.goal_reason = request.data["goal_reason"]
         goals.user = user
         goals.save()
 
@@ -68,6 +78,6 @@ class GoalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Goals
-        fields = ('id','date', 'goal_name', )
+        fields = ('id','date', 'goal_name', 'goal_length', 'goal_reason' , )
         depth = 1
 

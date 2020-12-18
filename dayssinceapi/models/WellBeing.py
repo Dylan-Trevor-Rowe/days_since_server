@@ -3,6 +3,7 @@ from django.db import models
 
 
 class WellBeing(models.Model):
+    user = models.ForeignKey("DaysSinceUser", on_delete=models.CASCADE)
     date = models.DateField()
     fatigueScale = models.IntegerField()
     painScale = models.IntegerField()

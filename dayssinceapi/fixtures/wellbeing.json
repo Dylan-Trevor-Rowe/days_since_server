@@ -16,7 +16,8 @@
             "incontenance": false,
             "brainFog": false,
             "hoursOfSleep": 7,
-            "emotionalWellBeing": 3
+            "emotionalWellBeing": 3,
+            "user_id": 1
             }
     }
     

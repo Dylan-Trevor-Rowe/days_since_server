@@ -4,7 +4,9 @@
         "pk": 1,
         "fields": {
             "date": "2021-10-04",
-            "goal_name": true,
+            "goal_name": "exercise",
+            "goal_length": "7 days a week",
+            "goal_reason": "its good for you",
             "user": 1
         }
     }
