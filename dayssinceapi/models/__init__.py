@@ -5,3 +5,4 @@ from .Comments import Comments
 from .DaysSinceBoard import DaysSinceBoard
 from .Goals import Goals
 from .Articles import Articles
+from .CheckedGoals import CheckedGoals

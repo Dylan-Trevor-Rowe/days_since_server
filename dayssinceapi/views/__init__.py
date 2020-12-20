@@ -4,3 +4,4 @@ from .journalentry import JournalEntryView
 from .goals import GoalsViewset
 from .articles import ArticlesViewset
 from .dayssinceboard import DaysSinceBoardView
+from .goalschecked import CheckedGoalsViewset

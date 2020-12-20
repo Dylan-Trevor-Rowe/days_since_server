@@ -104,13 +104,19 @@ class WellBeingView(ViewSet):
 
       
 class WellBeingSerializer(serializers.ModelSerializer):
-    """JSON serializer for WellBeing"""
+    
 
     class Meta:
         model = WellBeing
         fields = ('id','date','weakness', 'stiffness', 'coordinationOrBalanceProblems', 'heatSensitivity', 'incontenance', 'brainFog', 'fatigueScale', 'painScale','noSymptoms', 'numbness', 
         'tingling',  'hoursOfSleep', 'emotionalWellBeing' ,)
         depth = 1
+
+class DaysSinceUserSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = DaysSinceUser
+            fields = ['id', 'user']
 
 
         

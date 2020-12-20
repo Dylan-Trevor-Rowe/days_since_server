@@ -82,5 +82,11 @@ class JournalEntrySerializer(serializers.ModelSerializer):
         fields = ('id','date', 'entry', )
         depth = 1
 
+class DaysSinceUserSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = DaysSinceUser
+            fields = ['id', 'user']
+
 
         

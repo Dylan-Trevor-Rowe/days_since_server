@@ -44,3 +44,10 @@ class DaysSinceBoardSerializer(serializers.ModelSerializer):
             model = DaysSinceBoard
             fields = ('id', 'daysSinceBoard', 'created', 'user', )
             depth = 1
+
+class DaysSinceUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+            model = DaysSinceUser
+            fields = ['id', 'user']
+

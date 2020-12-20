@@ -11,6 +11,7 @@ python manage.py loaddata goals
 python manage.py loaddata dayssinceboard
 python manage.py loaddata articles
 python manage.py loaddata comments
+python manage.py loaddata checkedgoals
 
 
 

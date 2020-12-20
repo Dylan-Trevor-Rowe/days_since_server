@@ -1,4 +1,5 @@
 from dayssinceapi.models.Goals import Goals
+from dayssinceapi.models.CheckedGoals import CheckedGoals
 from dayssinceapi.models.DaysSinceUser import DaysSinceUser
 from django.http import HttpResponseServerError
 from django.core.exceptions import ValidationError
@@ -7,25 +8,25 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
 
-class GoalsViewset(ViewSet):
+class CheckedGoalsViewset(ViewSet):
 
     def list(self, request):
         user = DaysSinceUser.objects.get(user=request.auth.user)
-        goal = Goals.objects.all()
+        goal = CheckedGoals.objects.all()
         goal.user = user
-        user_id = self.request.query_params.get('user_id', None)
-        if user_id is not None:
-         goal = goal.filter(user_id=user_id)
+        # user_id = self.request.query_params.get('user_id', None)
+        # if user_id is not None:
+        #     goal = goal.filter(user_id=user_id)
 
-        serializer = GoalSerializer(
+        serializer = CheckedGoalsSerializer(
         goal, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
 
         try:
-            goals = Goals.objects.get(pk=pk)
-            serializer = GoalSerializer(goals, context={'request': request})
+            goals = CheckedGoals.objects.get(pk=pk)
+            serializer = CheckedGoalsSerializer(goals, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
@@ -34,13 +35,13 @@ class GoalsViewset(ViewSet):
 
         user = DaysSinceUser.objects.get(user=request.auth.user)
 
-        goals = Goals()
+        goals = CheckedGoals()
 
         try:
             goals.date = request.data["date"]
-            goals.goal_name = request.data["goal_name"]
-            goals.goal_length = request.data["goal_length"]
-            goals.goal_reason = request.data["goal_reason"]
+            goals.checked = request.data["checked"]
+            goal = Goals.objects.get(pk=request.data["goal"])
+            goals.goal_id = goal.id
             goals.user = user
         except KeyError as ex:
             return Response({'message': 'Incorrect key was sent in request'}, status=status.HTTP_400_BAD_REQUEST)
@@ -49,7 +50,7 @@ class GoalsViewset(ViewSet):
 
         try:
             goals.save()
-            serializer = GoalSerializer(goals, context={'request': request})
+            serializer = CheckedGoalsSerializer(goals, context={'request': request})
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
@@ -58,7 +59,7 @@ class GoalsViewset(ViewSet):
 
         try:
       
-            goals = Goals.objects.get(pk=pk)
+            goals = CheckedGoals.objects.get(pk=pk)
             goals.delete()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
@@ -69,33 +70,16 @@ class GoalsViewset(ViewSet):
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def update(self, request, pk=None):
-   
-        user = DaysSinceUser.objects.get(user=request.auth.user)
-        goals = Goals.objects.get(pk=pk)
-        goals.date = request.data["date"]
-        goals.goal_name = request.data["goal_name"]
-        goals.goal_length = request.data["goal_length"]
-        goals.goal_reason = request.data["goal_reason"]
-        goals.user = user
-        goals.save()
-
-        return Response({}, status=status.HTTP_204_NO_CONTENT)
-
-
-      
-class GoalSerializer(serializers.ModelSerializer):
-    """JSON serializer for Journal"""
-
-    class Meta:
-        model = Goals
-        fields = ('id','date', 'goal_name', 'goal_length', 'goal_reason' , )
-        depth = 1
 
 class DaysSinceUserSerializer(serializers.ModelSerializer):
 
     class Meta:
-            model = DaysSinceUser
-            fields = ['id', 'user']
+        model = DaysSinceUser
+        fields = ['id', 'user']
 
-
+class CheckedGoalsSerializer(serializers.ModelSerializer):
+        user = DaysSinceUserSerializer(many=False)
+        class Meta:
+            model = CheckedGoals
+            fields = ('id','date', 'checked', 'user', 'goal', )
+            depth = 1

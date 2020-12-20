@@ -1,4 +1,3 @@
-from django.db.models.fields import BooleanField
 from dayssinceapi.models.DaysSinceUser import DaysSinceUser
 from django.db import models
 

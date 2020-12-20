@@ -1,0 +1,13 @@
+[ 
+    { 
+        
+        "model": "dayssinceapi.CheckedGoals",
+        "pk": 1,
+        "fields": {
+        "date": "2021-10-04",
+        "user": 1,
+        "goal": 1,
+        "checked": false
+           }
+        
+    } ]
