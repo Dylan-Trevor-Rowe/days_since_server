@@ -52,6 +52,12 @@ class ArticlesViewset(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class ArticleSerializer(serializers.ModelSerializer):
+    # link = serializers.HyperlinkedRelatedField(
+    #     many=True,
+    #     read_only=True,
+    
+    # )
+
   
     class Meta:
         model = Articles
