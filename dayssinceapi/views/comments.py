@@ -46,9 +46,9 @@ class CommentViewSet(ViewSet):
     def list(self, request):
      
         comments = Comments.objects.all()
-        articleId = request.query_params.get('articleId', None)
-        if articleId is not None:
-            comments = comments.filter(articleId = articleId)
+        article = request.query_params.get('article', None)
+        if article is not None:
+            comments = comments.filter(article = article)
         serializer = CommentSerializer(
             comments, many=True, context={'request': request})
         return Response(serializer.data)
