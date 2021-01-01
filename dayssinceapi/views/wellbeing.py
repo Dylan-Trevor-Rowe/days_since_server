@@ -13,8 +13,9 @@ class WellBeingView(ViewSet):
     """Emotional Well Being"""
 
     def list(self, request):
-   
-        wellbeing = WellBeing.objects.all()
+                
+        user = DaysSinceUser.objects.get(user = request.auth.user)
+        wellbeing = WellBeing.objects.filter(user = user)
         serializer = WellBeingSerializer(
         wellbeing, many=True)
         return Response(serializer.data)

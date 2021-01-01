@@ -9,8 +9,9 @@ class DaysSinceBoardView(ViewSet):
 
     def list(self, request):
    
-        board = DaysSinceBoard.objects.all()
+
         user = DaysSinceUser.objects.get(user=request.auth.user)
+        board = DaysSinceBoard.objects.filter(user = user)
    
         serializer = DaysSinceBoardSerializer(
         board, many=True)

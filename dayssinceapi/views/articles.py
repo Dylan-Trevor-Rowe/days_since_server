@@ -8,9 +8,7 @@ from rest_framework.viewsets import ViewSet
 class ArticlesViewset(ViewSet):
 
     def list(self, request):
-   
         articles = Articles.objects.all()
-   
         serializer = ArticleSerializer(
         articles, many=True)
         return Response(serializer.data)
@@ -40,17 +38,27 @@ class ArticlesViewset(ViewSet):
     def destroy(self, request, pk=None):
 
         try:
-            articles = Articles.objects.get(pk=pk)
-            articles.delete()
-
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
-
+            article = Articles.objects.get(pk=pk)
         except Articles.DoesNotExist as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+          
+                return Response({'message': ex.args[0]})
 
+        user = DaysSinceUser.objects.get(user=request.auth.user)
+        if (article.user != user):
+            
+           return Response(
+                {'message': 'Articles can only be deleted by the users who authored them.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        try:
+            article.delete()
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+   
 class ArticleSerializer(serializers.ModelSerializer):
     # link = serializers.HyperlinkedRelatedField(
     #     many=True,

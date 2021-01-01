@@ -11,12 +11,8 @@ class GoalsViewset(ViewSet):
 
     def list(self, request):
         user = DaysSinceUser.objects.get(user=request.auth.user)
-        goal = Goals.objects.all()
+        goal = Goals.objects.filter(user = user)
         goal.user = user
-        user_id = self.request.query_params.get('user_id', None)
-        if user_id is not None:
-         goal = goal.filter(user_id=user_id)
-
         serializer = GoalSerializer(
         goal, many=True)
         return Response(serializer.data)

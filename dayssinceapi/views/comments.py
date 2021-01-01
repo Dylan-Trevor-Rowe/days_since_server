@@ -56,17 +56,24 @@ class CommentViewSet(ViewSet):
     def destroy(self, request, pk=None):
 
         try:
-            comments = Comments.objects.get(pk=pk)
-            comments.delete()
-
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
-
+            comment = Comments.objects.get(pk=pk)
         except Comments.DoesNotExist as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+          
+                return Response({'message': ex.args[0]})
 
+        user = DaysSinceUser.objects.get(user=request.auth.user)
+        if (comment.user != user):
+            
+           return Response(
+                {'message': 'Articles can only be deleted by the users who authored them.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        try:
+            comment.delete()
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     
