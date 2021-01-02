@@ -70,5 +70,5 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Articles
         fields = ('id','date', 'title', 'link', 'user' )
-        depth = 1
+        depth = 2
 
