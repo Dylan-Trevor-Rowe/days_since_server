@@ -9,9 +9,10 @@ class DaysSinceBoardView(ViewSet):
 
     def list(self, request):
    
-
+        
         user = DaysSinceUser.objects.get(user=request.auth.user)
         board = DaysSinceBoard.objects.filter(user = user)
+        board.user = user
    
         serializer = DaysSinceBoardSerializer(
         board, many=True)
@@ -25,7 +26,6 @@ class DaysSinceBoardView(ViewSet):
 
         try:
             board.daysSinceBoard = request.data["daysSinceBoard"]
-            board.daysSinceBoard = request.data['created']
             board.user = user
       
         except KeyError as ex:
@@ -43,7 +43,7 @@ class DaysSinceBoardSerializer(serializers.ModelSerializer):
   
         class Meta:
             model = DaysSinceBoard
-            fields = ('id', 'daysSinceBoard', 'created', 'user', )
+            fields = ('id', 'daysSinceBoard',  'user', )
             depth = 1
 
 class DaysSinceUserSerializer(serializers.ModelSerializer):

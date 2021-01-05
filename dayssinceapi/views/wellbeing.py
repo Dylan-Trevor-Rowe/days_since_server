@@ -51,6 +51,7 @@ class WellBeingView(ViewSet):
         try:
             well_being.save()
             serializer = WellBeingSerializer(well_being, context={'request': request})
+            
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)

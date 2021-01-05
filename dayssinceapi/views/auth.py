@@ -70,5 +70,5 @@ def register_user(request):
     token = Token.objects.create(user=new_user)
 
     # Return the token to the client
-    data = json.dumps({"token": token.key})
+    data = json.dumps({"token": token.key, "user_id": days_since_user.id})
     return HttpResponse(data, content_type='application/json', status=status.HTTP_201_CREATED)
