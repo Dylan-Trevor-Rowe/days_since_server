@@ -1,6 +1,5 @@
 # days_since_server
 
-# Days-Since
 Days-Since is a Full CRUD Full Stack application that I built as my final-capstone at Nashville Software School.  
 The Application was built to aid Multiple-Sclerosis patients in tracking their disease progression over time.
 
@@ -31,10 +30,3 @@ Reload the web app: In pythonanywhere, navigate to the webapp, and click the big
 
 ### Client Side link
 To view the client side repo head to https://github.com/Dylan-Trevor-Rowe/days-since-client
-
-
-### `npm start`
-
-If server is running open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-
